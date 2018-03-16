@@ -20,25 +20,24 @@ AUC_all = zeros(length(cells_picked),1);
 NS_selec = zeros(length(cells_picked),1);
 %go through each cell and plot curve
 for c = 1:length(cells_picked)
-    n=cells_picked(c);
-    n_resps = resp_avg(n,:);
-    n_pval = resp_pval_fdr(n,:);
-    n_resps_sig_index = find(n_pval<significance);
-    n_resps_sig = n_resps(n_resps_sig_index);
+    n=cells_picked(c); %actual cell
+    n_resps = resp_avg(n,:); %responses of that cell
+    n_pval = resp_pval_fdr(n,:); %pvals for responses of that cell
+    n_resps_sig = n_resps(find(n_pval<significance)); %only significant responses
+    max_thresh = max(n_resps_sig); %max response
+    n_resps_sig_norm = n_resps_sig./max_thresh; %responses normalized to max
     
     pass_thresh = zeros(thresholds+1,2);
-    max_thresh = round(max(n_resps_sig),4);
     for t = 1:thresholds+1
-        thresh = max_thresh - round((max_thresh/thresholds)*(t-1),4);
-        pass_thresh(t,1) = thresh/max_thresh;%normalize to max response
-        pass_thresh(t,2) = length(find(n_resps_sig>=thresh))/stims;%as proportion of total num stims
+        thresh = 1 - round(1/thresholds,4)*(t-1);
+        pass_thresh(t,1) = thresh;%normalize to max response
+        pass_thresh(t,2) = length(find(n_resps_sig_norm>=thresh))/stims;%as proportion of total num stims
     end 
     
-    n_AUC = trapz(pass_thresh(:,2))/200; %max AUC is 200, so normalize to that
-    %test_AUC = trapz(pass_thresh(:,2),pass_thresh(:,1))
+    n_AUC = trapz(sort(pass_thresh(:,1)),pass_thresh(:,2)); %AUC proportion of stim with spacing of 1/thresholds
     AUC_all(n) = n_AUC;
     NS_selec(n) = 1-n_AUC;
-    if isempty(n_resps_sig)
+    if isempty(n_resps_sig_norm)
         NS_selec(n) = -1;
     end
     
@@ -46,7 +45,6 @@ for c = 1:length(cells_picked)
     xlim([0,1])
     xlabel('proportion of stim with sig resp (p<.01)')
     ylabel('normalized mean response')
-    %legend(sprintf('AUC=%.2f',n_AUC));
     title(sprintf('Cell %i , NS selectivity = %.2f',n,NS_selec(n)));
     saveas(gca,sprintf('NS_selec_%istim_cell%i.fig',stims,n))
     saveas(gca,sprintf('NS_selec_%istim_cell%i.png',stims,n))
