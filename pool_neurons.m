@@ -6,6 +6,8 @@ NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2209_2L_180302_suit
 NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2210_NC_180228_suite2p_processed\processed_suite2p\2210_NC_180228_analysis\NatScenes\2210_NC_180228_NatScenes_dataOut.mat');i=i+1;
 NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2212_NC_180227_suite2p_processed\processed_suite2p\2212_NC_180227_analysis\NatScenes\2212_NC_180227_NatScenes_dataOut.mat');i=i+1;
 NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2231_1R1L_180304_suite2p_processed\processed_suite2p\2231_1R1L_180304_analysis\NatScenes\2231_1R1L_180304_NatScenes_dataOut.mat');i=i+1;
+NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2189_1R_180317_suite2p_processed\processed_suite2p\2189_1R_180317_analysis\NatScenes\2189_1R_180317_NatScenes_dataOut.mat');i=i+1;
+NSdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2228_1R_180321_suite2p_processed\processed_suite2p\2228_1R_180321_analysis\NatScenes\2228_1R_180321_NatScenes_dataOut.mat');i=i+1;
 
 %get dimensions of all response matrices
 dimensions = zeros(length(NSdataOuts),3);
@@ -89,6 +91,8 @@ GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2209_2L_180302_suite
 GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2210_NC_180228_suite2p_processed\processed_suite2p\2210_NC_180228_analysis\Gratings\2210_NC_180228_Grating_dataOut.mat');i=i+1;
 GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2212_NC_180227_suite2p_processed\processed_suite2p\2212_NC_180227_analysis\Gratings\2212_NC_180227_Grating_dataOut.mat');i=i+1;
 GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2231_1R1L_180304_suite2p_processed\processed_suite2p\2231_1R1L_180304_analysis\Gratings\2231_1R1L_180304_Grating_dataOut.mat');i=i+1;
+GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2189_1R_180317_suite2p_processed\processed_suite2p\2189_1R_180317_analysis\Gratings\2189_1R_180317_Grating_dataOut.mat');i=i+1;
+GdataOuts{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2228_1R_180321_suite2p_processed\processed_suite2p\2228_1R_180321_analysis\Gratings\2228_1R_180321_Grating_dataOut.mat');i=i+1;
 
 %get dimensions of all response matrices
 dimensions = zeros(length(GdataOuts),3);
@@ -104,7 +108,7 @@ dataOut.isRemovedBlock = true(max(dimensions(:,1)),sum(dimensions(:,2)),dimensio
 dataOut.hasLocomotion = true(max(dimensions(:,1)),sum(dimensions(:,2)),dimensions(1,3)); %anything that isn't included later on will be a bad block by making 1 the default
 dataOut.totalNumStimuli = dimensions(1,3);
 dataOut.totalNumCells = sum(dimensions(:,2));
-dataOut.stimulus_ID = 'NatScenes';
+dataOut.stimulus_ID = 'Gratings';
 dataOut.stats.global.response_average_pval_fdr = nan(sum(dimensions(:,2)),dimensions(1,3));
 dataOut.stats.global.responsive_cells_p001_fdr_average_index = false(sum(dimensions(:,2)),1);
 dataOut.stats.global.response_ACTUAL_avg_vals = nan(sum(dimensions(:,2)),dimensions(1,3));
@@ -171,6 +175,8 @@ gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2209_2L_180302_suite
 gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2210_NC_180228_suite2p_processed\processed_suite2p\2210_NC_180228_analysis\Gratings\Gauss_fit\gaussFit_results.mat');i=i+1;
 gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2212_NC_180227_suite2p_processed\processed_suite2p\2212_NC_180227_analysis\Gratings\Gauss_fit\gaussFit_results.mat');i=i+1;
 gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2231_1R1L_180304_suite2p_processed\processed_suite2p\2231_1R1L_180304_analysis\Gratings\Gauss_fit\gaussFit_results.mat');i=i+1;
+gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2189_1R_180317_suite2p_processed\processed_suite2p\2189_1R_180317_analysis\Gratings\Gauss_fit\gaussFit_results.mat');i=i+1;
+gaussFits{i} = load('H:\ProcessedDataArchive\Pati\NatScene2\2228_1R_180321_suite2p_processed\processed_suite2p\2228_1R_180321_analysis\Gratings\Gauss_fit\gaussFit_results.mat');i=i+1;
 
 %piece all variables together 
 all_1minCV = [];
