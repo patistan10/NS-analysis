@@ -1,6 +1,6 @@
 function [RespMatrix,RespMatrixTraining,RespMatrixTesting,RespMatrixAllTrials,ProbDist,BinThresh,removedBlocks,selected_cells] = get_prob_dist_ver8_for20(ExpID,selected_cells,bins,folds,test_set)
 %UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%   SINGLE SESSION
 
 
     if isempty(ExpID)
