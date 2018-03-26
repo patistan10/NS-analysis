@@ -1,5 +1,5 @@
 function [AllFold_AllBins,selected_cells,bins_accuracy] = NatScene_decoding_ver8_for20(ExpID,type,selected_cells,folds)
-%% Natural Scene Decoding
+%% Natural Scene Decoding SINGLE SESSION
 %clear all
 %experiment parameters
 %ExpID = '2189_1R_171025';
