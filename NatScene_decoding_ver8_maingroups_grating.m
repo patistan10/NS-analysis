@@ -1,4 +1,4 @@
-%% Decode using specific groups of neurons
+%% Decode using specific groups of neurons for a single session
 
 expID = '2209_2L_180302';
 gratingsdir = sprintf('H:/ProcessedDataArchive/Pati/NatScene2/%s_suite2p_processed/processed_suite2p/%s_analysis/Gratings',expID,expID);
