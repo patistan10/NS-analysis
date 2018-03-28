@@ -59,12 +59,11 @@ types = ({'broad','medium','sharp'});
 for g=1:3    
     if large_group_ind(g)==1
         type = types{g};
-        if g==1 %for broad
-            rand_vec = randsample(length(cells_broad),length(cells_broad))';
-            rand_vec_rep = repmat(rand_vec,1,2);
+        if g==1 %for broad           
             for i = 1:30            
-                vec_picked = rand_vec_rep(i:i+target_group_size - 1);            
+                vec_picked = randsample(length(cells_broad),target_group_size)';
                 selected_cells = cells_broad(vec_picked);
+                selected_cells = sort(selected_cells);
                 broad_groups_all{i,1} = selected_cells;
                 [~,selected_cells,bins_accuracy] = NatScene_decoding_ver8_for20_simple_pooled(expID,type,selected_cells,bins,folds);
                 mean_acc = mean(bins_accuracy{1,bins});
@@ -80,8 +79,9 @@ for g=1:3
             rand_vec = randsample(length(cells_med),length(cells_med))';
             rand_vec_rep = repmat(rand_vec,1,2);
             for i = 1:30            
-                vec_picked = rand_vec_rep(i:i+target_group_size - 1);            
+                vec_picked = randsample(length(cells_sharp),target_group_size)';
                 selected_cells = cells_med(vec_picked);
+                selected_cells = sort(selected_cells);
                 med_groups_all{i,1} = selected_cells;
                 [~,selected_cells,bins_accuracy] = NatScene_decoding_ver8_for20_simple_pooled(expID,type,selected_cells,bins,folds);
                 mean_acc = mean(bins_accuracy{1,bins});
@@ -94,11 +94,10 @@ for g=1:3
             [min_diff,ind] = min(diffs);
             group_med = med_groups_all{ind,1};
         elseif g==3 %for sharp
-            rand_vec = randsample(length(cells_sharp),length(cells_sharp))';
-            rand_vec_rep = repmat(rand_vec,1,2);
             for i = 1:30            
-                vec_picked = rand_vec_rep(i:i+target_group_size - 1);            
+                vec_picked = randsample(length(cells_sharp),target_group_size)';
                 selected_cells = cells_sharp(vec_picked);
+                selected_cells = sort(selected_cells);
                 sharp_groups_all{i,1} = selected_cells;
                 [~,selected_cells,bins_accuracy] = NatScene_decoding_ver8_for20_simple_pooled(expID,type,selected_cells,bins,folds);
                 mean_acc = mean(bins_accuracy{1,bins});
